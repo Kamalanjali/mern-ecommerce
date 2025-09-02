@@ -1,6 +1,7 @@
 import express from "express";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
+import authRoutes from "./src/routes/authRoutes.js";
 
 dotenv.config(); // ✅ must be the very first thing
 console.log("DEBUG: MONGO_URI =", process.env.MONGO_URI);
@@ -9,6 +10,7 @@ const app = express();
 
 // Middleware
 app.use(express.json());
+app.use("/api/users", authRoutes);
 
 // Debug: Check if MONGO_URI is loaded
 if (!process.env.MONGO_URI) {
